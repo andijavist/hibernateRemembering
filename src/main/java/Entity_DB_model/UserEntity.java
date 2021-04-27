@@ -7,7 +7,7 @@ import java.util.List;
 @Entity//сущность-тело(сурс, отношение ОДИН-ко многим)
 @Table(name = "usershib")
 public class UserEntity {
-    @Id//в этих DTO id не сетится
+    @Id//в этих Entity id не сетится
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
@@ -30,13 +30,13 @@ public class UserEntity {
     // при помощи листа
     private List<AutoEntity> autos;
 
-    //МЕТОД ДЛЯ МОДИФИКАЦИИ DTO ИЗ main()
+    //МЕТОД ДЛЯ МОДИФИКАЦИИ Entity ИЗ main()
     public void addAuto(AutoEntity autoDTO) {
-        autoDTO.setUser(this);//????
-        autos.add(autoDTO);//добавляем в список авто
+        autoDTO.setUser(this);
+        autos.add(autoDTO);
     }
 
-    //МЕТОД ДЛЯ МОДИФИКАЦИИ DTO ИЗ main()
+    //МЕТОД ДЛЯ МОДИФИКАЦИИ Entity ИЗ main()
     public void removeAuto(AutoEntity autoDTO){
         autos.remove(autoDTO);
     }

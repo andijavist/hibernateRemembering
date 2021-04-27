@@ -5,7 +5,7 @@ import javax.persistence.*;
 @Entity//сущность хвост(таргет, отношение многие к ОДНОМУ)
 @Table(name = "autos")
 public class AutoEntity {
-    @Id//в этих ДТО id не сетится
+    @Id//в этих Entity id не сетится
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "model")

@@ -9,10 +9,8 @@ import java.util.List;
 
 //на мой взягляд лишний слой, можно для теста и в мэйне было сделать
 //здесь может быть еще логика, не связанная с DAO
-public class UserDTOService {
+public class UserEntityService {
 private UserDAO userDAO = new UserDAO();
-//Зачем явно прописываем пустой конструктор?
-public UserDTOService(){}
 
     public UserEntity findUserByID (int id){
     return userDAO.findById(id);

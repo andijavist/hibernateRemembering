@@ -14,31 +14,31 @@ public class AutoDAO_project {
                 get(AutoEntity.class, id);
     }
 
-    public void save(AutoEntity autoDTO) {
+    public void save(AutoEntity autoEntity) {
         //метод сохранения в базу данных
         Session session = HiberSessionFactoryBuilder
                 .getSessionFactory()
                 .openSession();
         Transaction tx1 = session.beginTransaction();
-        session.save(autoDTO);
+        session.save(autoEntity);
         tx1.commit();
         session.close();
     }
 
-    public void update(AutoEntity autoDTO) {
+    public void update(AutoEntity autoEntity) {
         //метод обновления значение DTO
         Session session = HiberSessionFactoryBuilder.getSessionFactory().openSession();
         Transaction tx2 = session.beginTransaction();
-        session.update(autoDTO);
+        session.update(autoEntity);
         tx2.commit();
         session.close();
     }
 
-    public void delete(AutoEntity autoDTO) {
+    public void delete(AutoEntity autoEntity) {
         //метод удаления DTO
         Session session = HiberSessionFactoryBuilder.getSessionFactory().openSession();
         Transaction tx3 = session.beginTransaction();
-        session.delete(autoDTO);
+        session.delete(autoEntity);
         tx3.commit();
         session.close();
     }}
