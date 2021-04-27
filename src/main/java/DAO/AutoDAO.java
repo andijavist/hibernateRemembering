@@ -1,20 +1,20 @@
 package DAO;
 
-import DTO_DB_model.AutoDTO;
+import Entity_DB_model.AutoEntity;
 import hiberUtilite.HiberSessionFactoryBuilder;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 public class AutoDAO {
-    public AutoDTO findById(int id) {
+    public AutoEntity findById(int id) {
         //метод поиска по id
         return HiberSessionFactoryBuilder.
                 getSessionFactory().
                 openSession().
-                get(AutoDTO.class, id);
+                get(AutoEntity.class, id);
     }
 
-    public void save(AutoDTO autoDTO) {
+    public void save(AutoEntity autoDTO) {
         //метод сохранения в базу данных
         Session session = HiberSessionFactoryBuilder
                 .getSessionFactory()
@@ -25,7 +25,7 @@ public class AutoDAO {
         session.close();
     }
 
-    public void update(AutoDTO autoDTO) {
+    public void update(AutoEntity autoDTO) {
         //метод обновления значение DTO
         Session session = HiberSessionFactoryBuilder.getSessionFactory().openSession();
         Transaction tx2 = session.beginTransaction();
@@ -34,7 +34,7 @@ public class AutoDAO {
         session.close();
     }
 
-    public void delete(AutoDTO autoDTO) {
+    public void delete(AutoEntity autoDTO) {
         //метод удаления DTO
         Session session = HiberSessionFactoryBuilder.getSessionFactory().openSession();
         Transaction tx3 = session.beginTransaction();

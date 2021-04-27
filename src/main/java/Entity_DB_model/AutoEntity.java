@@ -1,10 +1,10 @@
-package DTO_DB_model;
+package Entity_DB_model;
 
 import javax.persistence.*;
 
 @Entity//сущность хвост(таргет, отношение многие к ОДНОМУ)
 @Table(name = "autos")
-public class AutoDTO {
+public class AutoEntity {
     @Id//в этих ДТО id не сетится
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -13,13 +13,13 @@ public class AutoDTO {
     @Column(name = "color")
     private String color;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id"/*имя столбца сущности-таргета*/)
     //JoinColumn указывает,
     // через какой столбец
     // в таблице autos происходит
-    // связь с таблицей usershib (тот самый внешний ключ
-    private UserDTO user;//это foreign key
+    // связь с таблицей usershib (тот самый внешний ключ)
+    @ManyToOne
+    @JoinColumn(name = "user_id")/*имя столбца сущности-таргета*/
+    private UserEntity user;//это foreign key
 
 
 
@@ -30,7 +30,7 @@ public class AutoDTO {
 //    Не может быть вложенным, интерфейсом или enum;
 //    Не может быть final и не может содержать final-полей/свойств;
 //    Должен содержать хотя бы одно @Id-поле.
-    public AutoDTO() {
+    public AutoEntity() {
     }
 
     //При этом Entity может:
@@ -38,9 +38,13 @@ public class AutoDTO {
     //Наследоваться и быть наследованным;
     //Содержать другие методы и реализовывать интерфейсы.
 
-    public AutoDTO(String model, String color) {
+    public AutoEntity(String model, String color) {
         this.model = model;
         this.color = color;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public void setModel(String model) {
@@ -60,11 +64,11 @@ public class AutoDTO {
         return color;
     }
 
-    public UserDTO getUser() {
+    public UserEntity getUser() {
         return user;
     }
 
-    public void setUser(UserDTO user) {
+    public void setUser(UserEntity user) {
         this.user = user;
     }
 }

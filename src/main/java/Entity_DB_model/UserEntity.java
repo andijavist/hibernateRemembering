@@ -1,41 +1,43 @@
-package DTO_DB_model;
+package Entity_DB_model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 //https://javarush.ru/groups/posts/hibernate-java
 @Entity//сущность-тело(сурс, отношение ОДИН-ко многим)
 @Table(name = "usershib")
-public class UserDTO {
+public class UserEntity {
     @Id//в этих DTO id не сетится
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "name")
     private String name;
-    @Column(name="name")
+    @Column(name="age")
     private int age;
-    @OneToMany(mappedBy = "user",/*это имя поля
-                в классе-хвосте(таргете) - AutoDTO*/
+
+
+    @OneToMany(mappedBy = "user", /*это имя поля в классе-хвосте(таргете) - AutoDTO*/
                 cascade = CascadeType.ALL,
-                orphanRemoval = true/*почитать
+                fetch =FetchType.LAZY)/*orphanRemoval = trueпочитать
                 Настройка orphanRemoval
                 вполне хорошо переводится с английского —
                 "удалять сирот".
                 Если мы удалим юзера из БД —
-                все связанные с ним автомобили также будут удалены. */)
+                все связанные с ним автомобили также будут удалены. */
     //В реальной базе такой колонки нет,
     // мы просто осуществляем связь с объектами-хвостами(таргетами),
     // при помощи листа
-    private List<AutoDTO> autos;
+    private List<AutoEntity> autos;
 
     //МЕТОД ДЛЯ МОДИФИКАЦИИ DTO ИЗ main()
-    public void addAuto(AutoDTO autoDTO) {
+    public void addAuto(AutoEntity autoDTO) {
         autoDTO.setUser(this);//????
         autos.add(autoDTO);//добавляем в список авто
     }
 
     //МЕТОД ДЛЯ МОДИФИКАЦИИ DTO ИЗ main()
-    public void removeAuto(AutoDTO autoDTO){
+    public void removeAuto(AutoEntity autoDTO){
         autos.remove(autoDTO);
     }
 
@@ -44,24 +46,23 @@ public class UserDTO {
 //    Не может быть вложенным, интерфейсом или enum;
 //    Не может быть final и не может содержать final-полей/свойств;
 //    Должен содержать хотя бы одно @Id-поле.
-    public UserDTO(){}
+
+    public UserEntity(){}
 
 //    При этом Entity может:
 //    Содержать непустые конструкторы;
 //    Наследоваться и быть наследованным;
 //    Содержать другие методы и реализовывать интерфейсы.
 
-    public UserDTO(String name, int age, List<AutoDTO> autos) {
+    public UserEntity(String name, int age) {
         this.name = name;
         this.age = age;
-        this.autos = autos;
+        autos = new ArrayList<>();//ВАЖНАЯ ЧАСТЬ!
     }
 
+
+
     //COOKING PLATE CODE
-
-
-
-
 
     public void setName(String name) {
         this.name = name;
@@ -71,7 +72,7 @@ public class UserDTO {
         this.age = age;
     }
 
-    public void setAutos(List<AutoDTO> autos) {
+    public void setAutos(List<AutoEntity> autos) {
         this.autos = autos;
     }
 
@@ -87,7 +88,7 @@ public class UserDTO {
         return age;
     }
 
-    public List<AutoDTO> getAutos() {
+    public List<AutoEntity> getAutos() {
         return autos;
     }
 

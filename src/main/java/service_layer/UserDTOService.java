@@ -1,8 +1,8 @@
 package service_layer;
 
 import DAO.UserDAO;
-import DTO_DB_model.AutoDTO;
-import DTO_DB_model.UserDTO;
+import Entity_DB_model.AutoEntity;
+import Entity_DB_model.UserEntity;
 
 import java.util.List;
 
@@ -14,29 +14,29 @@ private UserDAO userDAO = new UserDAO();
 //Зачем явно прописываем пустой конструктор?
 public UserDTOService(){}
 
-    public UserDTO findUserByID (int id){
+    public UserEntity findUserByID (int id){
     return userDAO.findById(id);
     }
 
 
-    public void saveUser(UserDTO userDTO){
+    public void saveUser(UserEntity userEntity){
 
-    userDAO.save(userDTO);
+    userDAO.save(userEntity);
     }
 
-    public void deleteUser(UserDTO userDTO){
-    userDAO.delete(userDTO);
+    public void deleteUser(UserEntity userEntity){
+    userDAO.delete(userEntity);
     }
 
-    public void updateUser (UserDTO userDTO){
-    userDAO.update(userDTO);
+    public void updateUser (UserEntity userEntity){
+    userDAO.update(userEntity);
     }
 
-    public List<UserDTO> findAllUsers (){
+    public List<UserEntity> findAllUsers (){
     return userDAO.findAll();
     }
 
-    public AutoDTO findAutoById (int id){
+    public AutoEntity findAutoById (int id){
     return userDAO.findAutoById(id);
     }
 

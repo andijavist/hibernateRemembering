@@ -1,7 +1,7 @@
 package hiberUtilite;
 
-import DTO_DB_model.AutoDTO;
-import DTO_DB_model.UserDTO;
+import Entity_DB_model.AutoEntity;
+import Entity_DB_model.UserEntity;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -26,18 +26,18 @@ public class HiberSessionFactoryBuilder {
                 // и специальный параметр show_sql.
                 // Он нужен для того, чтобы все sql-запросы,
                 // которые hibernate будет выполнять к нашей БД, выводились в консоль.
-                Configuration conf=new Configuration().configure();
+                Configuration configuration = new Configuration().configure();
 
                 //регистрация Entity (явно добавляем аннотированые классы)
-                conf.addAnnotatedClass(UserDTO.class);
-                conf.addAnnotatedClass(AutoDTO.class);
+                configuration.addAnnotatedClass(UserEntity.class);
+                configuration.addAnnotatedClass(AutoEntity.class);
 
                 //Builder for standard ServiceRegistry instances.
                 // создается билдер для реестра сервисов
-                StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()/*Create a default builder.*/
-                                                           .applySettings(conf.getProperties()/* получает проперти из файла Hibernate.cfg.xml*/);
-                sessionFactory = conf.buildSessionFactory(builder.build()/*Build the StandardServiceRegistry.
-                                                                           создается реестр сервисов*/);
+                StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
+                /*configuration.getProperties() получает проперти из файла Hibernate.cfg.xml*/
+                sessionFactory = configuration.buildSessionFactory(builder.build());
+                /*Build the StandardServiceRegistry. создается реестр сервисов*/
             } catch (Exception e) {
                 System.out.println("Исключение - "+ e);
             }
