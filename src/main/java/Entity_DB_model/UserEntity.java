@@ -19,7 +19,7 @@ public class UserEntity {
 
     @OneToMany(mappedBy = "user", /*это имя поля в классе-хвосте(таргете) - AutoDTO*/
                 cascade = CascadeType.ALL,
-                fetch =FetchType.LAZY)/*orphanRemoval = trueпочитать
+                orphanRemoval = true)/*почитать
                 Настройка orphanRemoval
                 вполне хорошо переводится с английского —
                 "удалять сирот".

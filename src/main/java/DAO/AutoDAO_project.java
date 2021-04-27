@@ -5,7 +5,7 @@ import hiberUtilite.HiberSessionFactoryBuilder;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-public class AutoDAO {
+public class AutoDAO_project {
     public AutoEntity findById(int id) {
         //метод поиска по id
         return HiberSessionFactoryBuilder.

@@ -17,7 +17,7 @@ public class AutoEntity {
     // через какой столбец
     // в таблице autos происходит
     // связь с таблицей usershib (тот самый внешний ключ)
-    @ManyToOne
+    @ManyToOne(fetch =FetchType.LAZY)
     @JoinColumn(name = "user_id")/*имя столбца сущности-таргета*/
     private UserEntity user;//это foreign key
 
@@ -38,9 +38,10 @@ public class AutoEntity {
     //Наследоваться и быть наследованным;
     //Содержать другие методы и реализовывать интерфейсы.
 
-    public AutoEntity(String model, String color) {
+    public AutoEntity(String model, String color/*,UserEntity userEntity*/) {
         this.model = model;
         this.color = color;
+//        this.user=userEntity;
     }
 
     public int getId() {
