@@ -3,14 +3,20 @@ package service_layer;
 import DAO.UserDAO;
 import Entity_DB_model.AutoEntity;
 import Entity_DB_model.UserEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 
-//на мой взягляд лишний слой, можно для теста и в мэйне было сделать
-//здесь может быть еще логика, не связанная с DAO
+@Component
 public class UserEntityService {
-private UserDAO userDAO = new UserDAO();
+private UserDAO userDAO;
+
+    @Autowired
+    public UserEntityService(UserDAO userDAO) {
+        this.userDAO = userDAO;
+    }
 
     public UserEntity findUserByID (int id){
     return userDAO.findById(id);
