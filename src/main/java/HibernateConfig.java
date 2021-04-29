@@ -1,5 +1,3 @@
-package Config;
-
 import org.postgresql.Driver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -13,7 +11,8 @@ import java.util.Properties;
 
 
 @Configuration
-@ComponentScan(basePackages = "DAO")//переделать, почему тут ссылка на DAO? разобраться - ответ= так как в SessionFactory будет поставляться СПРИНГОМ БИН LocalSessionFactoryBean sessionFactory
+@ComponentScan(basePackages = "DAO")
+//переделать, почему тут ссылка на DAO? разобраться - ответ= так как в SessionFactory будет поставляться СПРИНГОМ БИН LocalSessionFactoryBean sessionFactory
 public class HibernateConfig {
 
     private static final String URL = "jdbc:postgresql://127.0.0.1:5432/postgres";

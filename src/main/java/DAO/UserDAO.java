@@ -19,11 +19,14 @@ import java.util.List;
 public class UserDAO {
 
     private SessionFactory sessionFactory;
-
     @Autowired
     public UserDAO(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
+        this.sessionFactory = HiberSessionFactoryBuilder.getSessionFactory();
     }
+//    @Autowired
+//    public UserDAO() {
+//        this.sessionFactory = HiberSessionFactoryBuilder.getSessionFactory();
+//    }
 
 
     public UserEntity findById(int id) {
